@@ -1,15 +1,23 @@
 
 from django.http import *
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate, login
 
-# def home(request):
-    # return  HttpResponse(u'<h1>Merhaba Dünya</h1>')
-def login(request):
+
+def loginview(request):
     if request.method=='POST':
-        name=request.POST['name']
         email=request.POST['email']
-        data= "%s %s" % (name,email)
-        return render(request, 'index.html', {"name": name, "email": email})
+        password=request.POST['password']
+
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+
+        else:
+            return render(request,'login_view.html',{'message':'Email veya Parolanız yanlış.'})
+
+
     else:
-        return render(request,'index.html')
+        return render(request,'login_view.html')
 

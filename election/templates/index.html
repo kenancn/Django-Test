@@ -1,11 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <div class="container">
+    {{message}}
     <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as
-        a way to quickly start any new project.
-        </p>
+
+        <br>
+        <h3>Created Surveys</h3>
+       {% for survey in surveys %}
+            <li>{{survey.name}}</li>
+            <li>{{survey.created_at}}</li>
+
+
+        {% endfor %}
+        <br>
+        <h3>Created Questions</h3>
+        <br>
+
+        {% for question in questions %}
+            <li>{{question.title}}</li>
+            <li>{{question.choice_one}}</li>
+            <li>{{question.choice_two}}</li>
+            <li>{{question.choice_three}}</li>
+            <li>{{question.choice_four}}</li>
+        {% endfor %}
+
     </div>
+
+
 </div>
 {% endblock %}

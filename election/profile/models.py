@@ -1,6 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+
+class City(models.Model):
+    Name = models.CharField('İsim', max_length=100)
+    Code = models.IntegerField('Plaka kodu',)
+    class Meta:
+        verbose_name = 'Şehir'
+        verbose_name_plural = 'Şehirler'
+    def __str__(self):
+        return str(self.Name)
+class Town(models.Model):
+    Name = models.CharField('İlçe', max_length=100)
+    City = models.ForeignKey(City, verbose_name='Şehir',null=False, blank=False)
+    class Meta:
+        verbose_name = 'İlçe'
+        verbose_name_plural = 'İlçeler'
+    def __str__(self):
+        return str(self.Name)
+
+
 class UserProfileManager(BaseUserManager):
     use_in_migrations = True
 
@@ -27,6 +46,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField("Staff?", null=False, blank=False, default=False)
     is_superuser = models.BooleanField("Superuser?", null=False, blank=False, default=False)
     created_at = models.DateTimeField('Kayıt Tarihi', auto_now_add=True)
+    town=models.ForeignKey(Town,verbose_name="İlçe",null=True,blank=True)
 
     USERNAME_FIELD = 'email'
     objects = UserProfileManager()
@@ -44,3 +64,4 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.name
+

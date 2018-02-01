@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+
+<form action="/signup/" method="post" >{% csrf_token %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+            <h4>Welcome back.</h4>
+            <input type="text" id="name" name="name" class="form-control input-sm chat-input" placeholder="Name" />
+            </br>
+            <input type="text" id="userName" name="email" class="form-control input-sm chat-input" placeholder="Email" />
+            </br>
+            <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input" placeholder="password" />
+            </br>
+            <input type="password" id="userPassword1" name="password1" class="form-control input-sm chat-input" placeholder="Retype password" />
+                <br>
+            <div class="wrapper">
+            <span class="group-btn">
+                <input type="submit" value="Kayit ol">
+            </span>
+            </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+    {{message}}
+    </form>
+{% endblock %}

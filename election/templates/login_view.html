@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<form action="/login" method="post" >
+
+<form action="/login/" method="post" >{% csrf_token %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-offset-5 col-md-3">
@@ -9,11 +10,11 @@
             <h4>Welcome back.</h4>
             <input type="text" id="userName" name="email" class="form-control input-sm chat-input" placeholder="username" />
             </br>
-            <input type="text" id="userPassword" name="password" class="form-control input-sm chat-input" placeholder="password" />
+            <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input" placeholder="password" />
             </br>
             <div class="wrapper">
             <span class="group-btn">
-                <input type="submit" value="gonder">
+                <input type="submit" value="Giris">
             </span>
             </div>
             </div>
@@ -21,5 +22,6 @@
         </div>
     </div>
 </div>
+    {{message}}
     </form>
 {% endblock %}

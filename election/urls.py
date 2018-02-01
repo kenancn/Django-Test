@@ -16,10 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
+from . import login_view
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.home),
+    url(r'^login/', login_view.loginview),
+    url(r'^signup/', views.signup),
+    url(r'^logout/', views.logoutview),
 ]
 urlpatterns+=staticfiles_urlpatterns()
